@@ -1,50 +1,125 @@
-"""" Environment Variables """""""""""""""""""""""""""""""""""""""""""""""""""
+""" Misc """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+echo  "  ___"
+echo  "d(^_^)b"
+echo " \\| |/"
+echo  "  (#)"
+echo  "  |||"
+echo  "  d^b"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""" Environment Variables """""""""""""""""""""""""""""""""""""""""""""""""""""
 let $RTP=split(&runtimepath, ',')[0]
 let $NVIM_HOME= $HOME . "/.config/nvim"
-let $NVIM_INIT= $NVIM_HOME . "/init.vim"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $NVIM_INIT= $MYVIMRC
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Configurations """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Configurations """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set noshiftround
+set number numberwidth=3
+set nowrap
+set listchars=eol:$,tab:▸\ ,trail:~,extends:>,precedes:<,space:·
+set hlsearch incsearch ignorecase smartcase showmatch
+set showmode showcmd
+set updatetime=300 hidden 
+set cmdheight=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" Personal Keybindings """"""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Personal Keybindings """"""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader="\<Space>"
 
 " Command mode
 nnoremap <Leader><Leader> :
 
-" Window movement
-nnoremap <Leader>wh <C-w>h
-nnoremap <Leader>wj <C-w>j
-nnoremap <Leader>wk <C-w>k
-nnoremap <Leader>wl <C-w>l
+" Window managment
+nnoremap <silent> <Leader>wh <C-w>h|  " Move to the window to left
+nnoremap <silent> <Leader>wj <C-w>j|  " Move to the window below
+nnoremap <silent> <Leader>wk <C-w>k|  " Move to the window above
+nnoremap <silent> <Leader>wl <C-w>l|  " Move to the window to the right
+nnoremap <Leader>wq :q<CR>|           " Kill the current window
 
-" Edit commands
-nnoremap <silent> <Leader>fve :e $NVIM_INIT<CR>
+" Movement
+nnoremap H ^|  " Move to the begining of the line
+nnoremap L $|  " Move to the end of the line
+nnoremap J L|  " Move to the bottom of the buffer
+nnoremap K H|  " Move to the top of the buffer
+
+" init.vim commands
+nnoremap <silent> <Leader>fvg :e $NVIM_INIT<CR>|       " Goto init.vim
+nnoremap <silent> <Leader>fve :vsplit $NVIM_INIT<CR>|  " Edit init.vim
+nnoremap <Leader>fvu :source $NVIM_INIT<CR>|           " Source init.vim
+
+" File commands
+nnoremap <Leader>fw :w<CR>|   " Save current file
+inoremap <C-s> <ESC>:w<CR>i|  " Save current file
 
 " Visual commands
-nnoremap <Leader>v <C-v>
-
-" CTags
-"nnoremap <Leader>ct :TagbarToggle<CR>
-
-" Update
-nnoremap <Leader>fvu :source $NVIM_INIT<CR>
+nnoremap <Leader>v <C-v>|  " Visual block (TODO remove?)
 
 " NerdTree
 nnoremap <silent> <Leader><Tab> :NERDTreeToggle<CR>
 
 " Terminal
-nnoremap <Leader>t :call ChooseTerm("term-slider", 1)<CR>
+nnoremap <silent> <Leader>t :call ChooseTerm("term-slider", 1)<CR>
+tnoremap <silent> <Leader>r1 :resize 10<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r2 :resize 20<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r3 :resize 30<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r4 :resize 40<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r5 :resize 50<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r6 :resize 60<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r7 :resize 70<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r8 :resize 80<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r9 :resize 90<CR>|   " Resize the terminal window
+tnoremap <silent> <Leader>r0 :resize 100<CR>|  " Resize the terminal window
 
 " FzF
 nnoremap <Leader>p :FZF<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Options
+nnoremap <Leader>-n :set number!<CR>|  " Toggle numbers
+nnoremap <Leader>-w :set list!<CR>|    " Toggle whitespace mode
+nnoremap <Leader>-r :set cc=81<CR>|    " Turn on ruler
+
+" Edit
+nnoremap <Leader>ewu viwU|        " Set word to uppercase
+nnoremap <Leader>ewl viwu|        " Set word to lowercase
+nnoremap <Leader>ecl O<esc>jddk|  " Clear the current line
+nnoremap <Leader>ew" viw<esc>a"<esc>bi"<esc>lel|  " Put "quotes" around word
+nnoremap <Leader>ew' viw<esc>a'<esc>bi'<esc>lel|  " Put 'quotes' around word
+vnoremap " <ESC>`>a"<ESC>`<i"<ESC>`>ll|  " Put "quotes" around highlighted text
+vnoremap ' <ESC>`>a'<ESC>`<i'<ESC>`>ll|  " Put 'quotes' around highlighted text
+
+" Search
+nnoremap / /\v|                     " Default escape all text
+vnoremap / /\v|                     " Default excape all text
+nnoremap <Leader>/ :let @/=''<CR>|  " Clear search
+vnoremap <Leader>/ :let @/=''<CR>|  " Clear search
+
+" Help
+nnoremap <Leader>hh :help<SPACE>|  " Enter command mode for help
+nnoremap <Leader>hw K|             " Lookup the command under the cursor
+
+" Esc
+inoremap jk <ESC>|       " Don't need the escape button?
+inoremap <ESC> <NOP>|    " Disable until comfortable
+inoremap <UP> <NOP>|     " Disable until comfortable
+inoremap <DOWN> <NOP>|   " Disable until comfortable
+inoremap <LEFT> <NOP>|   " Disable until comfortable
+inoremap <RIGHT> <NOP>|  " Disable until comfortable
+nnoremap <UP> <NOP>|     " Disable until comfortable
+nnoremap <DOWN> <NOP>|   " Disable until comfortable
+nnoremap <LEFT> <NOP>|   " Disable until comfortable
+nnoremap <RIGHT> <NOP>|  " Disable until comfortable
+tnoremap <ESC> <NOP>|    " Disable until comfortable
+tnoremap <UP> <NOP>|     " Disable until comfortable
+tnoremap <DOWN> <NOP>|   " Disable until comfortable
+tnoremap <LEFT> <NOP>|   " Disable until comfortable
+tnoremap <RIGHT> <NOP>|  " Disable until comfortable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" Instals """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Instals """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('$NVIM_HOME/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
@@ -67,32 +142,19 @@ call plug#end()
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $NVIM_INIT
 \| endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" Theme """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable the dracula color theme
-"packadd! dracula
-"if (has("termguicolors"))
-" set termguicolors
-"endif
+"""" Theme """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 colorscheme dracula
 
-" Enable the devicons pack
-"packadd! vim-devicons
 " Set the font
 set guifont=Hack_Nerd_Font:h11
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" File Explorer """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable the nerdtree file explorer
-"packadd! nerdtree
-
-" Enable the fuzzy file finder
-"packadd! fzf
-"packadd! fzf.vim
+"""" File Explorer """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:fzf_action = {
   \ '<Leader>t': 'tab split',
   \ 'ctrl-s': 'split',
@@ -103,10 +165,10 @@ let g:fzf_action = {
 if executable("ag")
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" Terminal """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Terminal """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " open new split panes to right and below
 set splitright
 set splitbelow
@@ -135,6 +197,7 @@ function! ChooseTerm(termname, slider)
         if a:slider
             split term://bash
             resize 10
+            set ma
         endif
         :exe "buffer " . a:termname
     else
@@ -142,15 +205,16 @@ function! ChooseTerm(termname, slider)
         if a:slider
             split term://bash
             resize 10
+            set ma
         endif
         :terminal
         :exe "f " a:termname
     endif
 endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" NERDtree """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" NERDtree """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically close NERDtree when a file is opened
 let NERDTreeQuitOnOpen = 1
 " Automatically close buffer of deleted file
@@ -159,6 +223,9 @@ let NERDTreeAutoDeleteBuffer = 1
 " TODO: Maybe delete?
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" Show hidden files
+let NERDTreeShowHiden=1
 
 " Open up NERDtree if no files were specified
 "autocmd StdinReadPre * let s:std_in=1
@@ -191,23 +258,15 @@ endfunction
 "call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 "call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 "call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""" CoC """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TextEdit might fail if hidden is not set.
-set hidden
-
+"""" CoC """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 
+                             \ 'coc-prettier', 'coc-tsserver']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -356,9 +415,9 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" Airline """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Airline """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "scriptencoding utf-8
 
 " This is a copy of the dark.vim theme, however it does not change colors in
@@ -422,4 +481,4 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "    exe "let pal.".item.suffix. " = pal.normal"
 "  endfor
 "endfor
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
