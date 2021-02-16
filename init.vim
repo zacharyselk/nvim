@@ -119,6 +119,10 @@ tnoremap <RIGHT> <NOP>|  " Disable until comfortable
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+"""" Loading """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call abbreviations#LoadAbbreviations()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """" Instals """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('$NVIM_HOME/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
