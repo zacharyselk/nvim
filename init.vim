@@ -39,6 +39,9 @@ nnoremap <silent> <Leader>wk <C-w>k|  " Move to the window above
 nnoremap <silent> <Leader>wl <C-w>l|  " Move to the window to the right
 nnoremap <Leader>wq :q<CR>|           " Kill the current window
 
+" Buffer managment
+nnoremap <Leader>bt :execute "rightbelow vsplit " . bufname("#")<CR>|  " Open the last buffer in a new window
+
 " Movement
 nnoremap H ^|  " Move to the begining of the line
 nnoremap L $|  " Move to the end of the line
@@ -90,6 +93,12 @@ nnoremap <Leader>ew' viw<esc>a'<esc>bi'<esc>lel|  " Put 'quotes' around word
 vnoremap " <ESC>`>a"<ESC>`<i"<ESC>`>ll|  " Put "quotes" around highlighted text
 vnoremap ' <ESC>`>a'<ESC>`<i'<ESC>`>ll|  " Put 'quotes' around highlighted text
 
+" Copy
+nnoremap <Leader>cw yiw|  " Copies the word that the currsor is currently on
+
+" Replace
+nnoremap <Leader>rw ciw<ESC>"0p|  " Replaces the word that  the currsor is currently on with the last text yanked
+
 " Search
 nnoremap / /\v|                     " Default escape all text
 vnoremap / /\v|                     " Default excape all text
@@ -116,6 +125,12 @@ tnoremap <UP> <NOP>|     " Disable until comfortable
 tnoremap <DOWN> <NOP>|   " Disable until comfortable
 tnoremap <LEFT> <NOP>|   " Disable until comfortable
 tnoremap <RIGHT> <NOP>|  " Disable until comfortable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""" Other """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Restore last position
+autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
