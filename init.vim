@@ -1,5 +1,5 @@
 """ Misc """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo  "  ___"
+echo  "  MMM"
 echo  "d(^_^)b"
 echo " \\| |/"
 echo  "  (#)"
@@ -9,16 +9,19 @@ echo  "  d^b"
 
 """" Environment Variables """""""""""""""""""""""""""""""""""""""""""""""""""""
 let $RTP=split(&runtimepath, ',')[0]
-let $NVIM_HOME= $HOME . "/.config/nvim"
+"let $NVIM_HOME= $HOME . "/.config/nvim"
+let $NVIM_HOME=$RTP
 let $NVIM_INIT= $MYVIMRC
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """" Configurations """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 set noshiftround
 set number numberwidth=3
 set nowrap
-set listchars=eol:$,tab:▸\ ,trail:~,extends:>,precedes:<,space:·
+"set listchars=eol:$,tab:▸\ ,trail:~,extends:>,precedes:<,space:·
+set listchars=eol:$,tab:--,trail:~,extends:>,precedes:<,space:·
 set hlsearch incsearch ignorecase smartcase showmatch
 set showmode showcmd
 set updatetime=300 hidden 
@@ -120,7 +123,7 @@ tnoremap <RIGHT> <NOP>|  " Disable until comfortable
 
 
 """" Loading """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call abbreviations#LoadAbbreviations()
+"call abbreviations#LoadAbbreviations()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """" Instals """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,15 +140,19 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $NVIM_INIT
 \| endif
+
+let g:rust_recommended_style = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -173,6 +180,12 @@ endif
 
 
 """" Terminal """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If in windows set shell to powershell
+if has("win32")
+  "set shell=C:\system32\WindowsPowerShell\v1.0\powershell.exe
+  set shell=powershell.exe
+endif
+
 " open new split panes to right and below
 set splitright
 set splitbelow
