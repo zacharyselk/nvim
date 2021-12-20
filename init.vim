@@ -26,6 +26,7 @@ set hlsearch incsearch ignorecase smartcase showmatch
 set showmode showcmd
 set updatetime=300 hidden 
 set cmdheight=2
+set fileformats=dos
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -41,12 +42,15 @@ nnoremap <silent> <Leader>wj <C-w>j|  " Move to the window below
 nnoremap <silent> <Leader>wk <C-w>k|  " Move to the window above
 nnoremap <silent> <Leader>wl <C-w>l|  " Move to the window to the right
 nnoremap <Leader>wq :q<CR>|           " Kill the current window
+nnoremap <silent> <Leader>wv <C-w>v|  " Split veritcally
+nnoremap <silent> <Leader>wh <C-w>h|  " Split horizontally
 
 " Buffer managment
 "nnoremap <Leader>bt :execute "rightbelow vsplit " . bufname("#")<CR>|  " Open the last buffer in a new window
-nnoremap <silent> <Leader>fp :BufferLinePick<CR>
-nnoremap <silent> <Leader>fh :BufferLineCyclePrev<CR>
-nnoremap <silent> <Leader>fl :BufferLineCycleNext<CR>
+nnoremap <silent> <Leader>fp :BufferLinePick<CR>|       " Pick a new buffer to go to
+nnoremap <silent> <Leader>fh :BufferLineCyclePrev<CR>|  " Move to the prev buffer
+nnoremap <silent> <Leader>fl :BufferLineCycleNext<CR>|  " Move to the next buffer
+nnoremap <silent> <Leader>fc :BufferLinePickClose<CR>|  " Closes the picked window rather than opening it
 
 " Movement
 nnoremap H ^|  " Move to the begining of the line
