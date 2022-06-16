@@ -28,9 +28,9 @@ keymap("n", "J", "^", opts)  -- Move to the bottom of the buffer
 keymap("n", "K", "^", opts)  -- Move to the top of the buffer
 
 -- init.vim Commands
-keymap("n", "<Leader>fvg", ":e \"g:NVIM_INIT\"<CR>", opts)      -- Goto init.vim
-keymap("n", "<Leader>fve", ":vsplit \"g:NVIM_INIT<CR>\"", opts) -- Edit init.vim
-keymap("n", "<Leader>fvu", ":source \"g:NVIM_INIT<CR>\"", opts) -- Update init.vim
+keymap("n", "<Leader>fvg", ":e g:NVIM_INIT<CR>", opts)      -- Goto init.vim
+keymap("n", "<Leader>fve", ":vsplit g:NVIM_INIT<CR>", opts) -- Edit init.vim
+keymap("n", "<Leader>fvu", ":source g:NVIM_INIT<CR>", opts) -- Update init.vim
 
 -- File Commands
 keymap("n", "<Leader>fw", ":w<CR>", opts)  -- Save current file

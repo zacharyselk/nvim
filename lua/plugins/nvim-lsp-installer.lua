@@ -5,8 +5,13 @@ if not status_ok then
   return
 end
 
+local servers = {
+  --"jsonls",
+  --"jdtls",
+}
+
 lsp_installer.setup({
-  ensure_installed = { "jdtls" },
+  ensure_installed = servers,
   automatic_installation = false,
   ui = {
     icons = {

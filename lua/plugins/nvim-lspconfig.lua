@@ -6,6 +6,6 @@ if not status_ok then
 end
 
 
-lspconfig.ccls.setup{}
---require('lspconfig').jdtls.setup{}
+--lspconfig.ccls.setup{}
+--lspconfig.jdtls.setup{}
 

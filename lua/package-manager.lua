@@ -81,6 +81,7 @@ return packer.startup(function(use)
   -- LSP -----------------------------------------------------------------------
   use "williamboman/nvim-lsp-installer"
   use "neovim/nvim-lspconfig"
+  use "mfussenegger/nvim-jdtls"
   ------------------------------------------------------------------------------
 
   -- Completion ----------------------------------------------------------------
