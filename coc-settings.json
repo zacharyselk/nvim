@@ -1,4 +1,10 @@
 {
+  // Codelens
+  "codeLens.enable": true,
+  "java.referencesCodeLens.enabled": true,
+  "java.implementationsCodeLens.enabled": true,
+
+
   "eslint.filetypes": [
     "javascript",
     "typescript",
@@ -24,5 +30,16 @@
         }
       }
     }
-  }
+  },
+  //"java.configuration.runtimes": [
+  //  {
+  //    "name": "JavaSE-15",
+  //    "path": "/usr/bin/",
+  //    "default": true
+  //  },
+  //  //{
+  //  //  "name": "JavaSE-17",
+  //  //  "path": "/home/selk/java/jdk-17.0.3.1/bin"
+  //  //},
+  //],
 }
