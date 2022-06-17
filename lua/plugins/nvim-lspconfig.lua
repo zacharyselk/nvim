@@ -6,6 +6,37 @@ if not status_ok then
 end
 
 
---lspconfig.ccls.setup{}
+lspconfig.ccls.setup{
+  filetypes = { "c", "cpp", "hpp", "objc", "objcpp" },
+  --root_dir = "compile_commands.json",
+  init_options = {
+    compilationDatabaseDirectory = "build",
+    index = {
+      threads = 0,
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"},
+    },
+  }
+}
 --lspconfig.jdtls.setup{}
 
+
+local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status then
+  print("Error: Cmp-nvim-lsp did not load")
+  return
+end
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'ccls' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    -- on_attach = my_custom_on_attach,
+    capabilities = capabilities,
+  }
+end

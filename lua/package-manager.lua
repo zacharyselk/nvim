@@ -19,7 +19,7 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost package-manager.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -70,7 +70,7 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" }
   }
   use {
-    "kyazdani42/nvim-tree.lua",
+    "kyazdani42/nvim-tree.lua",  -- Tree file structure viewer
     requires = {
       "kyazdani42/nvim-web-devicons", -- optional, for file icon
     },
@@ -101,7 +101,8 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" }
   }
   use "norcalli/nvim-colorizer.lua"  -- Colors hex codes
-  use "akinsho/toggleterm.nvim"
+  use "akinsho/toggleterm.nvim"  -- Toogles a terminal buffer
+  use "folke/which-key.nvim"  -- Interactivly show key bindings
   ------------------------------------------------------------------------------
   
 end)

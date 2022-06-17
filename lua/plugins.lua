@@ -12,5 +12,4 @@ require("plugins/nvim-tree")
 require("plugins/quick-scope")
 require("plugins/telescope")
 require("plugins/toggleterm")
-
---require'lspconfig'.jdtls.setup{}
+require("plugins/which-key")
