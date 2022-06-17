@@ -47,7 +47,7 @@ return packer.startup(function(use)
   ------------------------------------------------------------------------------
 
   -- Cursor movement -----------------------------------------------------------
-  use "unblevable/quick-scope"  -- Hop around the current line
+  --use "unblevable/quick-scope"  -- Hop around the current line
   use "phaazon/hop.nvim"  -- Hop around the screen using work prefixes
   ------------------------------------------------------------------------------
 
