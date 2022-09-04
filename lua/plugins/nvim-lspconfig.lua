@@ -21,6 +21,30 @@ lspconfig.ccls.setup{
 }
 --lspconfig.jdtls.setup{}
 
+--lspconfig.denols.setup{}
+lspconfig.rome.setup{}
+
+lspconfig.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        autopep8 = {
+          enabled = true
+        },
+
+        flake8 = {
+          enabled = true,
+          maxLineLength = 100
+        },
+
+        pycodestyle = {
+          --ignore = {'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
